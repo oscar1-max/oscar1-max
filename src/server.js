@@ -19,10 +19,10 @@ if (!process.env.JWT_SECRET) {
 
 const app = express();
 
-// FIXED CORS - now allows localhost AND your netlify site
+// Allows requests from localhost (for local testing) and the live Netlify site
 app.use(
   cors({
-    origin: (process.env.CORS_ORIGIN || "http://localhost:3000,https://oscar-gold.netlify.app").split(","),
+    origin: (process.env.CORS_ORIGIN || "http://localhost:3000,https://oscar-gold-store.netlify.app").split(","),
     credentials: true,
   })
 );
