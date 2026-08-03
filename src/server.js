@@ -35,6 +35,16 @@ app.use(express.json());
 
 app.get("/health", (req, res) => res.json({ status: "ok", time: new Date().toISOString() }));
 
+// TEMPORARY — seeds the database once, visit then DELETE this route
+app.get("/dev-seed-once", (req, res) => {
+  try {
+    require("./db/seed");
+    res.send("Seeding complete — go back and delete this route from server.js now!");
+  } catch (e) {
+    res.status(500).send("Seed error: " + e.message);
+  }
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
